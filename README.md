@@ -59,35 +59,10 @@ Salidas
 - Vista previa de predicciones.
 
 -------------------------------------------------------------------------------
-Personalización
--------------------------------------------------------------------------------
-- Ajustar umbrales de alta cardinalidad y elección de encoder.
-- Modificar el set de modelos del plan devuelto por el LLM.
-- Cambiar número de folds, métrica primaria o grids.
-
--------------------------------------------------------------------------------
 Limitaciones
 -------------------------------------------------------------------------------
 - Conjuntos muy grandes pueden requerir muestreo, OHE disperso o búsqueda de hiperparámetros más reducida.
 - La calidad del plan depende del LLM; el notebook incluye saneo de grids para evitar fallos comunes.
-- Si el CSV de test no incluye el target (por ejemplo, competiciones tipo Kaggle), no se calculan métricas para ese archivo.
-
--------------------------------------------------------------------------------
-Solución de problemas
--------------------------------------------------------------------------------
-- Error de columna no encontrada en ColumnTransformer:
-  - Asegurarse de que el target no esté en las columnas de entrada.
-  - El bloque 7A recalcula feature_cols excluyendo el target.
-
-- Hiperparámetro inválido (por ejemplo, learning_rate en RandomForest):
-  - El bloque 7A sanea los grids; re-ejecutar 6B para actualizar el plan si fuese necesario.
-
-- Memoria insuficiente:
-  - Usar OHE disperso y/o reducir grids y folds.
-  - En casos extremos, activar muestreo en la celda de entrenamiento.
-
-- Sin métricas en test.csv:
-  - El archivo no tiene columna objetivo; el agente puede generar un archivo de submission, pero no métricas.
 
 -------------------------------------------------------------------------------
 Estructura del repo
