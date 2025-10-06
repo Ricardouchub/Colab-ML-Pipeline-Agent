@@ -1,4 +1,4 @@
-# Colab ML Pipeline Agent (LangChain +DeepSeek)
+# Colab: ML Pipeline Agent (LangChain + DeepSeek)
 
 Agente en Colab que, dado un dataset en CSV, planifica y ejecuta un pipeline de Machine Learning de inicio a fin: análisis inicial, preprocesamiento, entrenamiento con Scikit-Learn y reporte automático con Evalcards.
 
