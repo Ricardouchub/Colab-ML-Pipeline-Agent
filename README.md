@@ -67,11 +67,21 @@ Limitaciones
 -------------------------------------------------------------------------------
 Estructura del repo
 -------------------------------------------------------------------------------
-- notebooks/
-  - colab_ml_pipeline_agent.ipynb
-- data/ (opcional, no versionar datos sensibles)
-- reports/ (Markdowns de Evalcards, opcional)
-- README.txt (este archivo)
+```
+Colab-ML-Pipeline-Agent/
+├── ML Pipeline Agent Notebook.ipynb     # Google Colab Notebook
+├── artifacts/                           # Artefactos del test (modelo, métricas, etc.)
+│   ├── model.joblib
+│   ├── columns.json
+│   ├── metrics_test.json
+│   └── preview_predictions.csv
+├── data/                                # Datos usados para el test
+│   └── train.csv
+├── reports/                             # Reportes Markdown del test
+│   └── reporte_modelo.md
+└── plan/                                # Plan generado por el LLM
+    └── plan.json
+```
 
 -------------------------------------------------------------------------------
 Q&A
@@ -87,3 +97,8 @@ Q&A
 
 - ¿Dónde encuentro el reporte?
   En la salida de la celda de evaluación se indica la ruta del archivo Markdown generado por Evalcards.
+
+  -------------------------------------------------------------------------------
+  Autor
+  -------------------------------------------------------------------------------
+  **Ricardo Urdaneta**
