@@ -4,14 +4,14 @@ Agente en Colab que, dado un dataset en CSV, planifica y ejecuta un pipeline de 
 
 <a href="https://colab.research.google.com/github/Ricardouchub/Colab-ML-Pipeline-Agent/blob/main/Colab%20ML%20Pipeline%20Agent%20Notebook.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir en Google Colab"/></a>
 
--------------------------------------------------------------------------------
+
 Objetivos
 -------------------------------------------------------------------------------
 - Convertir un CSV en un modelo funcional sin escribir bloques de código enormes.
 - Demostrar integración LLM + ML clásico: el LLM diseña el plan y Scikit-Learn lo ejecuta.
 - Generar métricas y un reporte en Markdown (Evalcards) listos para documentar resultados.
 
--------------------------------------------------------------------------------
+
 Características 
 -------------------------------------------------------------------------------
 - Sniffing automático: detecta tipos de columnas, nulos, columnas tipo ID y candidatos a target.
@@ -21,16 +21,15 @@ Características
 - Reporte listo para portafolio con Evalcards (Markdown).
 - Funciona para clasificación o regresión; maneja alta cardinalidad con Frequency Encoding.
 
--------------------------------------------------------------------------------
 Stack
 -------------------------------------------------------------------------------
-- LLM Planning: LangChain + DeepSeek (modelo deepseek-chat)
-- ML: Scikit-Learn (Pipeline, ColumnTransformer, GridSearchCV)
-- Reportes: Evalcards (Markdown)
-- Datos: Pandas / NumPy
-- Env: Google Colab
+- **LLM Planning**: LangChain + DeepSeek (modelo deepseek-chat)
+- **ML**: Scikit-Learn (Pipeline, ColumnTransformer, GridSearchCV)
+- **Reports**: Evalcards (Markdown)
+- **Data**: Pandas / NumPy
+- **Env**: Google Colab
 
--------------------------------------------------------------------------------
+
 Flujo de trabajo
 -------------------------------------------------------------------------------
 1. Instalación de dependencias.
@@ -41,32 +40,25 @@ Flujo de trabajo
 6. Planificación con LLM: se obtiene un JSON con split, preprocesamiento, modelos, CV y métricas.
 7. Ejecución del plan: entrenamiento con GridSearchCV, selección de mejor modelo y evaluación; se genera reporte de Evalcards.
 
--------------------------------------------------------------------------------
+
 Entradas esperadas
 -------------------------------------------------------------------------------
 - Archivo CSV con columnas de atributos y, preferentemente, una columna objetivo.
 - Si no hay target, el agente sugiere candidatos por heurística; el usuario elige.
 
-Heurísticas y decisiones
-- Columnas tipo ID se detectan por patrón de nombre y cardinalidad.
-- Alta cardinalidad categórica se codifica con Frequency Encoding.
-- OHE puede ser denso o disperso según dimensionalidad estimada.
-- Si el plan del LLM propone hiperparámetros inválidos para un estimador, el código filtra y aplica un grid seguro por defecto.
-
--------------------------------------------------------------------------------
 Salidas
 -------------------------------------------------------------------------------
 - Métricas en test impresas en la notebook.
 - Reporte en Markdown (Evalcards), por defecto reporte_modelo.md o en la carpeta evalcards_reports/.
 - Vista previa de predicciones.
 
--------------------------------------------------------------------------------
+
 Limitaciones
 -------------------------------------------------------------------------------
 - Conjuntos muy grandes pueden requerir muestreo, OHE disperso o búsqueda de hiperparámetros más reducida.
 - La calidad del plan depende del LLM; el notebook incluye saneo de grids para evitar fallos comunes.
 
--------------------------------------------------------------------------------
+
 Estructura del repo
 -------------------------------------------------------------------------------
 ```
@@ -85,7 +77,7 @@ Colab-ML-Pipeline-Agent/
     └── plan.json
 ```
 
--------------------------------------------------------------------------------
+
  Q&A
 -------------------------------------------------------------------------------
 - ¿Sirve para clasificación y regresión?
@@ -100,7 +92,7 @@ Colab-ML-Pipeline-Agent/
 - ¿Dónde encuentro el reporte?
   En la salida de la celda de evaluación se indica la ruta del archivo Markdown generado por Evalcards.
 
--------------------------------------------------------------------------------
+
  Autor
 -------------------------------------------------------------------------------
   **Ricardo Urdaneta**
