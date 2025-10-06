@@ -1,0 +1,91 @@
+{
+  "split": {
+    "test_size": 0.2,
+    "random_state": 42,
+    "stratify": true
+  },
+  "preprocessing": {
+    "numeric": {
+      "imputer": "median",
+      "scaler": "standard"
+    },
+    "categorical": {
+      "imputer": "most_frequent",
+      "encoder": "onehot",
+      "handle_high_cardinality": {
+        "threshold": 50,
+        "strategy": "frequency"
+      }
+    },
+    "drop_low_variance": false
+  },
+  "models": [
+    {
+      "name": "LogisticRegression",
+      "estimator": "LogisticRegression",
+      "param_grid": {
+        "C": [
+          0.1,
+          1.0,
+          10.0
+        ],
+        "solver": [
+          "liblinear"
+        ]
+      }
+    },
+    {
+      "name": "RandomForest",
+      "estimator": "RandomForest",
+      "param_grid": {
+        "n_estimators": [
+          100,
+          300
+        ],
+        "max_depth": [
+          null,
+          6,
+          10
+        ],
+        "min_samples_split": [
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "name": "XGBoost",
+      "estimator": "XGBoost",
+      "param_grid": {
+        "n_estimators": [
+          100,
+          300
+        ],
+        "max_depth": [
+          3,
+          6,
+          10
+        ],
+        "learning_rate": [
+          0.01,
+          0.1
+        ]
+      }
+    }
+  ],
+  "cv": {
+    "strategy": "StratifiedKFold",
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42
+  },
+  "metrics": [
+    "accuracy",
+    "f1",
+    "roc_auc"
+  ],
+  "evalcards": {
+    "title": "Spaceship Titanic Classification",
+    "include_threshold_curves": true
+  }
+}
