@@ -84,7 +84,7 @@ Colab-ML-Pipeline-Agent/
 ```
 
 -------------------------------------------------------------------------------
-Q&A
+ Q&A
 -------------------------------------------------------------------------------
 - ¿Sirve para clasificación y regresión?
   Sí. El tipo de problema se infiere y puede ser ajustado por el usuario.
@@ -98,7 +98,7 @@ Q&A
 - ¿Dónde encuentro el reporte?
   En la salida de la celda de evaluación se indica la ruta del archivo Markdown generado por Evalcards.
 
-  -------------------------------------------------------------------------------
-  Autor
-  -------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+ Autor
+-------------------------------------------------------------------------------
   **Ricardo Urdaneta**
