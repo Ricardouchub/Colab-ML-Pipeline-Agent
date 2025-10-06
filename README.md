@@ -133,7 +133,7 @@ Solución de problemas
   - El archivo no tiene columna objetivo; el agente puede generar un archivo de submission, pero no métricas.
 
 -------------------------------------------------------------------------------
-Estructura sugerida del repositorio
+Estructura del repo
 -------------------------------------------------------------------------------
 - notebooks/
   - colab_ml_pipeline_agent.ipynb
@@ -142,19 +142,7 @@ Estructura sugerida del repositorio
 - README.txt (este archivo)
 
 -------------------------------------------------------------------------------
-Licencia
--------------------------------------------------------------------------------
-Uso educativo y de portafolio. Ajuste la licencia según sus necesidades (por ejemplo, MIT).
-
--------------------------------------------------------------------------------
-Créditos
--------------------------------------------------------------------------------
-- DeepSeek y LangChain para la planificación del pipeline.
-- Scikit-Learn para el entrenamiento y la evaluación.
-- Evalcards para la generación de reportes en Markdown.
-
--------------------------------------------------------------------------------
-Preguntas frecuentes
+Q&A
 -------------------------------------------------------------------------------
 - ¿Sirve para clasificación y regresión?
   Sí. El tipo de problema se infiere y puede ser ajustado por el usuario.
