@@ -2,6 +2,8 @@
 
 Agente en Colab que, dado un dataset en CSV, planifica y ejecuta un pipeline de Machine Learning de inicio a fin: análisis inicial, preprocesamiento, entrenamiento con Scikit-Learn y reporte automático con Evalcards. Diseñado para portafolio: celdas cortas, explicadas y reproducibles.
 
+<a href="https://colab.research.google.com/github/Ricardouchub/Colab-ML-Pipeline-Agent/blob/main/Colab%20ML%20Pipeline%20Agent%20Notebook.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Abrir en Google Colab"/></a>
+
 -------------------------------------------------------------------------------
 Objetivos
 -------------------------------------------------------------------------------
