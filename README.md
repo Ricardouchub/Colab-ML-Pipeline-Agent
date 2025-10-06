@@ -10,7 +10,7 @@ Objetivos
 - Generar métricas y un reporte en Markdown (Evalcards) listos para documentar resultados.
 
 -------------------------------------------------------------------------------
-Características clave
+Características 
 -------------------------------------------------------------------------------
 - Sniffing automático: detecta tipos de columnas, nulos, columnas tipo ID y candidatos a target.
 - Selección interactiva de target y limpieza avanzada de columnas irrelevantes.
@@ -18,7 +18,6 @@ Características clave
 - Ejecución del plan con Scikit-Learn: Pipeline + ColumnTransformer + GridSearchCV.
 - Reporte listo para portafolio con Evalcards (Markdown).
 - Funciona para clasificación o regresión; maneja alta cardinalidad con Frequency Encoding.
-- Diseño “Colab-first”: celdas pequeñas, comentarios y salidas claras.
 
 -------------------------------------------------------------------------------
 Stack
@@ -27,7 +26,7 @@ Stack
 - ML: Scikit-Learn (Pipeline, ColumnTransformer, GridSearchCV)
 - Reportes: Evalcards (Markdown)
 - Datos: Pandas / NumPy
-- Entorno: Google Colab
+- Env: Google Colab
 
 -------------------------------------------------------------------------------
 Flujo de trabajo
@@ -39,48 +38,6 @@ Flujo de trabajo
 5. Selección de target y limpieza avanzada (ID-like, cardinalidad extrema, columnas sin información).
 6. Planificación con LLM: se obtiene un JSON con split, preprocesamiento, modelos, CV y métricas.
 7. Ejecución del plan: entrenamiento con GridSearchCV, selección de mejor modelo y evaluación; se genera reporte de Evalcards.
-
-Opcionales
-- Inferencia por lotes desde CSV de test.
-- Empaquetado de artefactos para descarga.
-
--------------------------------------------------------------------------------
-Inicio rápido en Google Colab
--------------------------------------------------------------------------------
-1) Abrir un notebook nuevo en Colab y ejecutar:
-!pip -q install -U langchain-deepseek langchain scikit-learn evalcards python-dotenv
-
-2) Configurar la API de DeepSeek y probar la conexión:
-- Definir la variable de entorno DEEPSEEK_API_KEY en la celda correspondiente.
-- Ejecutar la celda de prueba que imprime “OK”.
-
-3) Cargar tu CSV:
-- Usar la celda de carga; el lector intenta inferir el separador.
-- Verificar el head() y la forma del DataFrame.
-
-4) Sniffing automático:
-- Revisar listas de columnas numéricas/categóricas, nulos y candidatos a target.
-- Confirmar el tipo de problema sugerido.
-
-5) Elegir el target y limpiar:
-- Seleccionar target desde el desplegable.
-- El agente elimina columnas irrelevantes:
-  - Patrones de nombre (id, uuid, index, code, date, time, etc.).
-  - Una sola categoría, casi todos únicos, o más del 90 % nulos.
-
-6) Generar el plan con el LLM:
-- El agente crea un JSON con:
-  - split (test_size, random_state, estratificación si aplica)
-  - preprocesamiento (imputación, escalado, encoding, alta cardinalidad)
-  - modelos y grids
-  - validación cruzada (KFold o StratifiedKFold)
-  - métricas acordes al problema
-  - configuración para Evalcards
-
-7) Ejecutar el plan:
-- Se construye un Pipeline reproducible y se entrena con GridSearchCV.
-- Se muestra el mejor modelo y su score de CV.
-- Se evalúa en test y se genera reporte_modelo.md con Evalcards.
 
 -------------------------------------------------------------------------------
 Entradas esperadas
