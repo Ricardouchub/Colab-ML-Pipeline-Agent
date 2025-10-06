@@ -10,7 +10,7 @@ Objetivos
 - Generar métricas y un reporte en Markdown (Evalcards) listos para documentar resultados.
 
 -------------------------------------------------------------------------------
-Características clave
+Características 
 -------------------------------------------------------------------------------
 - Sniffing automático: detecta tipos de columnas, nulos, columnas tipo ID y candidatos a target.
 - Selección interactiva de target y limpieza avanzada de columnas irrelevantes.
@@ -18,7 +18,6 @@ Características clave
 - Ejecución del plan con Scikit-Learn: Pipeline + ColumnTransformer + GridSearchCV.
 - Reporte listo para portafolio con Evalcards (Markdown).
 - Funciona para clasificación o regresión; maneja alta cardinalidad con Frequency Encoding.
-- Diseño “Colab-first”: celdas pequeñas, comentarios y salidas claras.
 
 -------------------------------------------------------------------------------
 Stack
@@ -27,7 +26,7 @@ Stack
 - ML: Scikit-Learn (Pipeline, ColumnTransformer, GridSearchCV)
 - Reportes: Evalcards (Markdown)
 - Datos: Pandas / NumPy
-- Entorno: Google Colab
+- Env: Google Colab
 
 -------------------------------------------------------------------------------
 Flujo de trabajo
@@ -39,48 +38,6 @@ Flujo de trabajo
 5. Selección de target y limpieza avanzada (ID-like, cardinalidad extrema, columnas sin información).
 6. Planificación con LLM: se obtiene un JSON con split, preprocesamiento, modelos, CV y métricas.
 7. Ejecución del plan: entrenamiento con GridSearchCV, selección de mejor modelo y evaluación; se genera reporte de Evalcards.
-
-Opcionales
-- Inferencia por lotes desde CSV de test.
-- Empaquetado de artefactos para descarga.
-
--------------------------------------------------------------------------------
-Inicio rápido en Google Colab
--------------------------------------------------------------------------------
-1) Abrir un notebook nuevo en Colab y ejecutar:
-!pip -q install -U langchain-deepseek langchain scikit-learn evalcards python-dotenv
-
-2) Configurar la API de DeepSeek y probar la conexión:
-- Definir la variable de entorno DEEPSEEK_API_KEY en la celda correspondiente.
-- Ejecutar la celda de prueba que imprime “OK”.
-
-3) Cargar tu CSV:
-- Usar la celda de carga; el lector intenta inferir el separador.
-- Verificar el head() y la forma del DataFrame.
-
-4) Sniffing automático:
-- Revisar listas de columnas numéricas/categóricas, nulos y candidatos a target.
-- Confirmar el tipo de problema sugerido.
-
-5) Elegir el target y limpiar:
-- Seleccionar target desde el desplegable.
-- El agente elimina columnas irrelevantes:
-  - Patrones de nombre (id, uuid, index, code, date, time, etc.).
-  - Una sola categoría, casi todos únicos, o más del 90 % nulos.
-
-6) Generar el plan con el LLM:
-- El agente crea un JSON con:
-  - split (test_size, random_state, estratificación si aplica)
-  - preprocesamiento (imputación, escalado, encoding, alta cardinalidad)
-  - modelos y grids
-  - validación cruzada (KFold o StratifiedKFold)
-  - métricas acordes al problema
-  - configuración para Evalcards
-
-7) Ejecutar el plan:
-- Se construye un Pipeline reproducible y se entrena con GridSearchCV.
-- Se muestra el mejor modelo y su score de CV.
-- Se evalúa en test y se genera reporte_modelo.md con Evalcards.
 
 -------------------------------------------------------------------------------
 Entradas esperadas
@@ -102,47 +59,32 @@ Salidas
 - Vista previa de predicciones.
 
 -------------------------------------------------------------------------------
-Personalización
--------------------------------------------------------------------------------
-- Ajustar umbrales de alta cardinalidad y elección de encoder.
-- Modificar el set de modelos del plan devuelto por el LLM.
-- Cambiar número de folds, métrica primaria o grids.
-
--------------------------------------------------------------------------------
 Limitaciones
 -------------------------------------------------------------------------------
 - Conjuntos muy grandes pueden requerir muestreo, OHE disperso o búsqueda de hiperparámetros más reducida.
 - La calidad del plan depende del LLM; el notebook incluye saneo de grids para evitar fallos comunes.
-- Si el CSV de test no incluye el target (por ejemplo, competiciones tipo Kaggle), no se calculan métricas para ese archivo.
-
--------------------------------------------------------------------------------
-Solución de problemas
--------------------------------------------------------------------------------
-- Error de columna no encontrada en ColumnTransformer:
-  - Asegurarse de que el target no esté en las columnas de entrada.
-  - El bloque 7A recalcula feature_cols excluyendo el target.
-
-- Hiperparámetro inválido (por ejemplo, learning_rate en RandomForest):
-  - El bloque 7A sanea los grids; re-ejecutar 6B para actualizar el plan si fuese necesario.
-
-- Memoria insuficiente:
-  - Usar OHE disperso y/o reducir grids y folds.
-  - En casos extremos, activar muestreo en la celda de entrenamiento.
-
-- Sin métricas en test.csv:
-  - El archivo no tiene columna objetivo; el agente puede generar un archivo de submission, pero no métricas.
 
 -------------------------------------------------------------------------------
 Estructura del repo
 -------------------------------------------------------------------------------
-- notebooks/
-  - colab_ml_pipeline_agent.ipynb
-- data/ (opcional, no versionar datos sensibles)
-- reports/ (Markdowns de Evalcards, opcional)
-- README.txt (este archivo)
+```
+Colab-ML-Pipeline-Agent/
+├── ML Pipeline Agent Notebook.ipynb     # Google Colab Notebook
+├── artifacts/                           # Artefactos del test (modelo, métricas, etc.)
+│   ├── model.joblib
+│   ├── columns.json
+│   ├── metrics_test.json
+│   └── preview_predictions.csv
+├── data/                                # Datos usados para el test
+│   └── train.csv
+├── reports/                             # Reportes Markdown del test
+│   └── reporte_modelo.md
+└── plan/                                # Plan generado por el LLM
+    └── plan.json
+```
 
 -------------------------------------------------------------------------------
-Q&A
+ Q&A
 -------------------------------------------------------------------------------
 - ¿Sirve para clasificación y regresión?
   Sí. El tipo de problema se infiere y puede ser ajustado por el usuario.
@@ -155,3 +97,8 @@ Q&A
 
 - ¿Dónde encuentro el reporte?
   En la salida de la celda de evaluación se indica la ruta del archivo Markdown generado por Evalcards.
+
+-------------------------------------------------------------------------------
+ Autor
+-------------------------------------------------------------------------------
+  **Ricardo Urdaneta**
