@@ -1,0 +1,17 @@
+{
+  "features": [
+    "HomePlanet",
+    "CryoSleep",
+    "Cabin",
+    "Destination",
+    "Age",
+    "VIP",
+    "RoomService",
+    "FoodCourt",
+    "ShoppingMall",
+    "Spa",
+    "VRDeck",
+    "Name"
+  ],
+  "target": "Transported"
+}
